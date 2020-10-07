@@ -15,60 +15,36 @@ include 'layout/include/header.php';
 <div class="books">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
-                    <div class="img-cover">
-                        <img src="layout/images/book1.jpg" alt="Book Cover" class="card-img-top">
+            <?php
+            $query = "SELECT * FROM books ORDER BY id DESC";
+            $result = mysqli_query($con, $query);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card text-center">
+                            <div class="img-cover">
+                                <img src="uploads\bookCovers/<?php echo $row['bookCover']; ?>" alt="Book Cover" class="card-img-top">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="book.php?id=<?php echo $row['id']; ?>"><?php echo $row['bookTitle']; ?></a>
+                                </h4>
+                                <p class="card-text"><?php echo mb_substr($row['bookContent'], 0, 150, "UTF-8"); ?></p>
+                                <a href="book.php?id=<?php echo $row['id']; ?>">
+                                    <button class="custom-btn">تحميل الكتاب</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="book.php">عنوان الكتاب</a>
-                        </h4>
-                        <p class="card-text">
-                            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص
-                        </p>
-                        <a href="book.php">
-                            <button class="custom-btn">تحميل الكتاب</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
-                    <div class="img-cover">
-                        <img src="layout/images/book2.jpg" alt="Book Cover" class="card-img-top">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">عنوان الكتاب</a>
-                        </h4>
-                        <p class="card-text">
-                            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص
-                        </p>
-                        <button class="custom-btn">
-                            <a href="#">تحميل الكتاب</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card text-center">
-                    <div class="img-cover">
-                        <img src="layout/images/book3.jpg" alt="Book Cover" class="card-img-top">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">عنوان الكتاب</a>
-                        </h4>
-                        <p class="card-text">
-                            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص
-                        </p>
-                        <button class="custom-btn">
-                            <a href="#">تحميل الكتاب</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
+                <?php
+                }
+            } else {
+                ?>
+                <div class="text-center">لاتوجد أي كتب</div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
