@@ -1,5 +1,9 @@
+<?php
+session_start();
+require_once('dashboard/include/connection.php');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -37,6 +41,13 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">تواصل معنا</a>
                     </li>
+                    <?php
+                    if (isset($_SESSION['adminInfo'])) {
+                    ?>
+                        <a href="dashboard/dashboard.php" target="_blank" class="dashboard-btn">لوحة التحكم</a>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>

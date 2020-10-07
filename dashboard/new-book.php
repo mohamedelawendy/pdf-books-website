@@ -39,7 +39,7 @@ if (!isset($_SESSION['adminInfo'])) {
             move_uploaded_file($imageTmp, "../uploads/bookCovers/" . $bookCover);
             // Book cover
             $book = rand(0, 1000) . "_" . $bookName;
-            move_uploaded_file($bookTmp, "../uploads/books/" . $bookName);
+            move_uploaded_file($bookTmp, "../uploads/books/" . $book);
             $query = "INSERT INTO books(bookTitle,bookCat,bookCover,book,bookContent)
             VALUES('$bookTitle','$bookCat','$bookCover','$book','$bookContent')";
             $res = mysqli_query($con, $query);
