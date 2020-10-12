@@ -28,10 +28,10 @@ include 'layout/include/header.php';
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="book.php?id=<?php echo $row['id']; ?>"><?php echo $row['bookTitle']; ?></a>
+                                    <a href="book.php?id=<?php echo $row['id']; ?>&&category=<?php echo $row['bookCat']; ?>"><?php echo $row['bookTitle']; ?></a>
                                 </h4>
                                 <p class="card-text"><?php echo mb_substr($row['bookContent'], 0, 150, "UTF-8"); ?></p>
-                                <a href="book.php?id=<?php echo $row['id']; ?>">
+                                <a href="book.php?id=<?php echo $row['id']; ?>&&category=<?php echo $row['bookCat']; ?>">
                                     <button class="custom-btn">تحميل الكتاب</button>
                                 </a>
                             </div>

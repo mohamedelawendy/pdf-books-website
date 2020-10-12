@@ -25,6 +25,9 @@ if (isset($_GET['id'])) {
                 <div class="col-md-8">
                     <div class="book-content">
                         <h4><?php echo $row['bookTitle']; ?></h4>
+                        <h5>
+                            <a href="author.php?author=<?php echo $row['bookAuthor']; ?>"><?php echo $row['bookAuthor']; ?></a>
+                        </h5>
                         <hr>
                         <p><?php echo $row['bookContent']; ?></p>
                         <button class="custom-btn" style="width: 160px">
@@ -45,118 +48,32 @@ if (isset($_GET['id'])) {
         <h4>كتب ذات صلة</h4>
         <hr>
         <div class="row">
+        <?php 
+            if(isset($_GET['category'])){
+                $bookCat = $_GET['category'];
+            }
+            // fetch related books
+            $query = "SELECT * FROM books WHERE bookCat = '$bookCat' AND id !='$id'";
+            $res = mysqli_query($con,$query);
+            while($row = mysqli_fetch_assoc($res)){
+            ?>
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="related-book text-center">
                     <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
+                        <a href="book.php?id=<?php echo $row['id']; ?>&&category=<?php echo $row['bookCat']; ?>">
+                            <img src="uploads/bookCovers/<?php echo $row['bookCover']; ?>" alt="Book Cover">
                         </a>
                     </div>
                     <div class="title">
                         <h5>
-                            <a href="#">عنوان الكتاب</a>
+                            <a href="book.php?id=<?php echo $row['id']; ?>&&category=<?php echo $row['bookCat'];?>"><?php echo $row['bookTitle']; ?></a>
                         </h5>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="related-book text-center">
-                    <div class="cover">
-                        <a href="#">
-                            <img src="images/book1.jpg" alt="Book Cover">
-                        </a>
-                    </div>
-                    <div class="title">
-                        <h5>
-                            <a href="#">عنوان الكتاب</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+            </div>            
+            <?php
+            }
+        ?>
         </div>
     </div>
 </div>
